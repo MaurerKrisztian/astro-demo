@@ -13,6 +13,7 @@
     "astro": "^1.0.0-beta.36"
   },
   "dependencies": {
+    "node-html-parser": "^5.3.3",
     "preact": "^10.7.2"
   }
 }
