@@ -17,6 +17,15 @@ let permalink = 'https://example.com/';
 let allPosts = await Astro.glob('./projects/*.md');
 allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
 
+const technologies = {}
+for (const project of allPosts) {
+	for (const t of project.frontmatter.technologies) {
+		if(technologies[t] == undefined){technologies[t] = {count: 0, elements: []}}
+		technologies[t].elements.push( project.frontmatter.repoName)
+		technologies[t].count++;
+	}
+}
+
 // Full Astro Component Syntax:
 // https://docs.astro.build/core-concepts/astro-components/
 ---
@@ -63,7 +72,27 @@ allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf()
 
 	<body>
 		<BlogHeader />
+		
 		<div class="wrapper">
+			
+		<h3>Technologies / project</h3>
+		<p>
+		
+			{Object.keys(technologies).map((name)=>(
+		<>
+		<p title={technologies[name].elements.join(", ")}><b>{name}</b> ({technologies[name].count} project): 
+			{technologies[name].elements.map((name)=>(
+				<>
+				<a href={"/git/" + name}>{name}</a> | 
+				</>
+			))}</p>
+		</>
+		))}
+
+		</p>
+	
+		
+		<p><b>Project count:</b> {allPosts.length}</p>
 			<main class="content">
 				<section class="intro">
 					<h1 class="latest">{title}</h1>

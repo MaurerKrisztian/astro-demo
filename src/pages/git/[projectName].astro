@@ -2,7 +2,6 @@
 
 export async function getStaticPaths() {
 	let allRepo = await Astro.glob('../projects/*.md');
-	console.log(allRepo[0].frontmatter)
 const resslt = allRepo.map((project)=>{
 	return  {params: {projectName: project.frontmatter.repoName}}
 })
@@ -18,8 +17,6 @@ import { Markdown } from 'astro/components';
 
 
 const { projectName } = Astro.params;
-
-console.log(projectName)
 
 let allRepo = await Astro.glob('../projects/*.md');
 

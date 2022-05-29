@@ -1,6 +1,7 @@
 ---
 repoName: minimal-dependency-injection
 
+technologies: ['js','ts', 'decorators']
 
 setup: |
   import Layout from '../../layouts/BlogPost.astro'

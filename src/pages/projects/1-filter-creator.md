@@ -1,6 +1,6 @@
 ---
 repoName: FilterCreator
-
+technologies: ['js', 'openCV']
 
 setup: |
   import Layout from '../../layouts/BlogPost.astro'
